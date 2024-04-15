@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+a[class^="router-link"] {
+  &:not(.unstyled) {
+    @apply hover:underline underline-offset-2;
+  }
+}
