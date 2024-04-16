@@ -15,13 +15,15 @@ export const useSearchTravel = async () => {
   const filters = ref<SearchFiltersSchema>(DEFAULT_FILTERS);
 
   const filteredTravels = computed(() => {
-    console.log('computed filteredTravels', travels.value)
-
     if (!travels.value) return [];
 
     return travels.value.filter((travel) => {
-      const isPriceInRange = !filters.value.maxPrice || travel.price <= filters.value.maxPrice;
-      const isNameMatch = !filters.value.search || travel.name.toLowerCase().includes(filters.value.search.toLowerCase());
+      const maxPrice = +filters.value.maxPrice;
+      const isPriceInRange = !maxPrice || travel.price <= maxPrice;
+
+      const query = travel.name.toLowerCase();
+      const isNameMatch = !query || travel.name.toLowerCase().includes(query);
+
       return isPriceInRange && isNameMatch;
     });
   });

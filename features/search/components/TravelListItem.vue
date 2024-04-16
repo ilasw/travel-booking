@@ -7,7 +7,7 @@ const props = defineProps<{
   travel: Travel
 }>();
 
-const {name, image, price, rating, slug} = reactive(props.travel);
+const {name, image, price, rating} = reactive(props.travel);
 const {excerpt, dates: {start, end, duration}} = useTravelItem(props.travel);
 const {state: showDetails, toggle: toggleDetails} = useToggle();
 

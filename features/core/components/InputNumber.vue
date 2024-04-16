@@ -4,6 +4,7 @@
 
 <template>
   <FormKit
+      number
       type="number"
       autocomplete="off"
       label-class="block text-neutral-900 text-sm font-medium"
