@@ -8,3 +8,10 @@ a[class^="router-link"] {
     @apply hover:underline underline-offset-2;
   }
 }
+
+@layer utilities {
+  .container {
+    @apply mx-auto md:max-w-2xl;
+    width: 88%;
+  }
+}

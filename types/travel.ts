@@ -7,7 +7,9 @@
 // a price for a single person and an average user rating.*
 
 export type Travel = {
+  id: number,
   name: string
+  slug: string
   dates: {
     departure: string
     return: string

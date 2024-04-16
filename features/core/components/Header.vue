@@ -3,15 +3,15 @@
 </script>
 
 <template>
-  <header>
+  <header class="sticky top-0 left-0 bg-white">
     <div class="container">
-      <nav>
+      <nav class="border-b">
         <ul role="list">
           <li role="listitem"
               class="logo"
           >
             <NuxtLink to="/"
-                      class="py-2"
+                      class="inline-block py-4"
             >Logo
             </NuxtLink>
           </li>

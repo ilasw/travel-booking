@@ -13,9 +13,16 @@ const {travels = []} = toRefs(props);
 
 <template>
   <section v-if="travels.length" class="py-8">
-    <ul class="flex flex-col gap-2">
-      <li v-for="travel of travels">
-        <TravelListItem :travel="travel"/>
+    <ul role="list"
+        class="flex flex-col gap-6"
+    >
+      <li v-for="travel of travels"
+          class="last:border-0 border-b border-neutral-200"
+          role="listitem"
+      >
+        <TravelListItem
+            :travel="travel"
+        />
       </li>
     </ul>
   </section>

@@ -3,6 +3,8 @@ import TravelList from "~/features/search/components/TravelList.vue";
 import type {Travel} from "~/types/travel";
 
 const mockTravel: Travel = {
+      id: 1,
+      slug: 'travel-to-the-moon',
       name: "Travel to the Moon",
       dates: {
         departure: "2022-12-12",

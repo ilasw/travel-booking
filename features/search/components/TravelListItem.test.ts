@@ -1,10 +1,10 @@
-import {expect, describe, test} from "vitest";
 import type {Travel} from "~/types/travel";
-import {mountSuspended, renderSuspended} from "@nuxt/test-utils/runtime";
+import {expect, describe, test} from "vitest";
+import {renderSuspended} from "@nuxt/test-utils/runtime";
 import TravelListItem from "~/features/search/components/TravelListItem.vue";
 import {screen} from "@testing-library/dom";
 import {vLocalizedPrice} from "~/plugins/localized-price";
-import {shallowMount} from "@vue/test-utils";
+import {vLocalizedTime} from "~/plugins/localized-time";
 
 const mockTravelItem: Travel = {
   name: "Travel to the Moon",
@@ -30,7 +30,8 @@ describe("Travel List Item", async () => {
     props: {travel: mockTravelItem},
     global: {
       directives: {
-        'localized-price': vLocalizedPrice
+        'localized-price': vLocalizedPrice,
+        'localized-time': vLocalizedTime
       }
     }
   });
@@ -40,7 +41,14 @@ describe("Travel List Item", async () => {
   });
 
   test('price sould be formatted', async () => {
-    expect(screen.getByText('1,000')).toBeDefined();
+    const componentPrice = component.getByTestId('price');
+    // Check if the price contains a comma or a dot
+    expect(componentPrice.textContent).toMatch(/(\d{1}[\.,])+\d{3}/);
+  });
+
+  test('departure date should be formatted', async () => {
+    const componentDate = component.getByTestId('departure');
+    expect(componentDate.innerHTML).toMatch(/\d{2}\/\d{2}\/\d{4}/);
   });
 
 });

@@ -1,5 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  corePlugins: {
+    container: false,
+  },
   content: [
     "./features/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -9,9 +12,6 @@ export default {
     "./error.vue",
   ],
   theme: {
-    container: {
-      center: true,
-    },
     extend: {},
   },
   plugins: [],
