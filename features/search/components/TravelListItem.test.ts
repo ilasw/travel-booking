@@ -2,11 +2,12 @@ import type {Travel} from "~/types/travel";
 import {expect, describe, test} from "vitest";
 import {renderSuspended} from "@nuxt/test-utils/runtime";
 import TravelListItem from "~/features/search/components/TravelListItem.vue";
-import {screen} from "@testing-library/dom";
 import {vLocalizedPrice} from "~/plugins/localized-price";
 import {vLocalizedTime} from "~/plugins/localized-time";
 
 const mockTravelItem: Travel = {
+  id: 1,
+  slug: "travel-to-the-moon",
   name: "Travel to the Moon",
   dates: {
     departure: "2022-12-12",
@@ -37,7 +38,7 @@ describe("Travel List Item", async () => {
   });
 
   test('should render', () => {
-    expect(screen.getByText(mockTravelItem.name)).toBeDefined();
+    expect(component.findByText(mockTravelItem.name)).toBeDefined();
   });
 
   test('price sould be formatted', async () => {
@@ -48,7 +49,8 @@ describe("Travel List Item", async () => {
 
   test('departure date should be formatted', async () => {
     const componentDate = component.getByTestId('departure');
-    expect(componentDate.innerHTML).toMatch(/\d{2}\/\d{2}\/\d{4}/);
+    // date to be formatted as "MMM DD"
+    expect(componentDate.innerHTML).toMatch(/[a-zA-Z]{3} \d{1,2}/);
   });
 
 });

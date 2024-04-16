@@ -3,7 +3,9 @@
 </script>
 
 <template>
-
+  <div class="container">
+    init
+  </div>
 </template>
 
 <style scoped>

@@ -20,9 +20,7 @@ const {travels = []} = toRefs(props);
           class="last:border-0 border-b border-neutral-200"
           role="listitem"
       >
-        <TravelListItem
-            :travel="travel"
-        />
+        <TravelListItem :travel="travel"/>
       </li>
     </ul>
   </section>
@@ -32,5 +30,4 @@ const {travels = []} = toRefs(props);
 </template>
 
 <style scoped>
-
 </style>

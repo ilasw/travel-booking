@@ -15,19 +15,10 @@ const {state: showDetails, toggle: toggleDetails} = useToggle();
 
 <template>
   <article
-      class="flex flex-col md:flex-row flex-nowrap gap-4 relative"
+      class="flex flex-col md:flex-row flex-nowrap gap-4 relative transition-all"
       itemtype="https://schema.org/TouristTrip"
       itemscope
   >
-
-    <!-- link to details -->
-    <RouterLink :to="`/${slug}/booking`"
-                class="absolute opacity-0 inset-0 z-0"
-                aria-label="Book now"
-                title="Book now"
-    >Book now
-    </RouterLink>
-
     <!-- Thumbnail -->
     <div class="image">
       <!-- todo: insert srcSet -->

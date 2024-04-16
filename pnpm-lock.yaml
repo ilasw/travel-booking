@@ -8,6 +8,9 @@ dependencies:
   '@formkit/core':
     specifier: ^1.6.2
     version: 1.6.2
+  '@formkit/nuxt':
+    specifier: ^1.6.2
+    version: 1.6.2(esbuild@0.20.2)(tailwindcss@3.4.3)(unocss@0.59.2)(vite@5.2.8)(vue@3.4.21)
   '@formkit/vue':
     specifier: ^1.6.2
     version: 1.6.2(tailwindcss@3.4.3)(unocss@0.59.2)(vue@3.4.21)
@@ -758,6 +761,29 @@ packages:
     dependencies:
       '@formkit/core': 1.6.2
       '@formkit/utils': 1.6.2
+    dev: false
+
+  /@formkit/nuxt@1.6.2(esbuild@0.20.2)(tailwindcss@3.4.3)(unocss@0.59.2)(vite@5.2.8)(vue@3.4.21):
+    resolution: {integrity: sha512-6bqsdX/X6Cj2BtL5s4CMIGBmXge2/yH9P+q9f2eVGpJzdbe+O2SN/HD+j3kBjugCuE/wE2B2cQ6LUHOcRS8DRQ==}
+    dependencies:
+      '@formkit/core': 1.6.2
+      '@formkit/i18n': 1.6.2
+      '@formkit/vue': 1.6.2(tailwindcss@3.4.3)(unocss@0.59.2)(vue@3.4.21)
+      '@nuxt/kit': 3.11.2
+      chokidar: 3.6.0
+      pathe: 1.1.2
+      unplugin: 1.10.1
+      unplugin-formkit: 0.2.13(esbuild@0.20.2)(vite@5.2.8)
+    transitivePeerDependencies:
+      - esbuild
+      - rollup
+      - supports-color
+      - tailwindcss
+      - unocss
+      - vite
+      - vue
+      - webpack
+      - windicss
     dev: false
 
   /@formkit/observer@1.6.2:
@@ -8113,6 +8139,29 @@ packages:
       - postcss
       - rollup
       - supports-color
+    dev: false
+
+  /unplugin-formkit@0.2.13(esbuild@0.20.2)(vite@5.2.8):
+    resolution: {integrity: sha512-qNHz7/0QDO0uVD5MoUZz49CI7q8cHM24RQDwbs5NfRJ6EiyZ1gBmWq9ta3QHR2nD7xacXV+yzmfDbnwlNpkzsg==}
+    peerDependencies:
+      esbuild: '*'
+      rollup: '*'
+      vite: '*'
+      webpack: '*'
+    peerDependenciesMeta:
+      esbuild:
+        optional: true
+      rollup:
+        optional: true
+      vite:
+        optional: true
+      webpack:
+        optional: true
+    dependencies:
+      esbuild: 0.20.2
+      pathe: 1.1.2
+      unplugin: 1.10.1
+      vite: 5.2.8
     dev: false
 
   /unplugin-vue-router@0.7.0(vue-router@4.3.0)(vue@3.4.21):
