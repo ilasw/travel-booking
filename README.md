@@ -14,4 +14,4 @@ This is a simple web app that allows users to book travel for exercise purposes.
 - Nuxt.js
 - TypeScript
 - Tailwind CSS
-- Jest
+- Vitest

@@ -13,5 +13,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@nuxt/eslint"]
+  test: true,
+
+  modules: ["@nuxt/eslint", '@nuxt/test-utils/module']
 })
