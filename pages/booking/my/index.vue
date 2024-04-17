@@ -19,6 +19,7 @@ console.log(myBookings);
           <th>Travel</th>
           <th>Customer</th>
           <th>Payment</th>
+          <th>Notes</th>
         </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@ console.log(myBookings);
           <td>{{ booking.travel }}</td>
           <td>{{ booking.customer.name }}</td>
           <td>{{ booking.payment.type }}</td>
+          <td>{{ booking.payment.notes }}</td>
         </tr>
         </tbody>
       </table>
