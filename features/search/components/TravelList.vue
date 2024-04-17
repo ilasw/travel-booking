@@ -2,7 +2,8 @@
 import type {Maybe} from "~/types/utils";
 import type {Travel} from "~/types/travel";
 import TravelListItem from "~/features/search/components/TravelListItem.vue";
-import TravelModal from "~/features/search/components/TravelModal.vue";
+import TravelModal, {type TravelModalProps} from "~/features/search/components/TravelModal.vue";
+import {onMounted} from "vue";
 
 type TravelListProps = {
   travels: Travel[]
@@ -11,11 +12,21 @@ type TravelListProps = {
 const props = defineProps<TravelListProps>();
 const {travels = []} = toRefs(props);
 
-const modal = ref<{ travel: Maybe<Travel>, toggle: (t?: Maybe<Travel>) => void }>({
+const modal = ref<TravelModalProps>({
   travel: null,
-  toggle: (value = null) => {
-    modal.value.travel = value;
+  isOpen: false,
+  toggle: (force) => {
+    modal.value.isOpen = force ?? !modal.value.isOpen;
   }
+});
+
+const openModaWithTravel = (travel: Maybe<Travel>) => {
+  modal.value.travel = travel;
+  modal.value.toggle(true);
+}
+
+onMounted(() => {
+  openModaWithTravel(travels?.value?.at(0));
 });
 </script>
 
@@ -30,7 +41,7 @@ const modal = ref<{ travel: Maybe<Travel>, toggle: (t?: Maybe<Travel>) => void }
           class="last:border-0 border-b border-neutral-200"
           role="listitem"
       >
-        <TravelListItem :travel="travel" @manage="modal.toggle($event)"/>
+        <TravelListItem :travel="travel" @manage="openModaWithTravel($event)"/>
       </li>
     </ul>
 
@@ -43,8 +54,9 @@ const modal = ref<{ travel: Maybe<Travel>, toggle: (t?: Maybe<Travel>) => void }
 
     <!-- modal -->
     <TravelModal
-        :travel="modal.travel"
+        :is-open="modal.isOpen"
         :toggle="modal.toggle"
+        :travel="modal.travel"
     />
   </section>
 

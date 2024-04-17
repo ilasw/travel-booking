@@ -8,6 +8,7 @@ type UseTravelManage = {
 
 export const useTravelManage = (props: UseTravelManage) => {
   const {travel} = props;
+  const form = ref(travel);
 
   const updateTravel = async (changes: Partial<Travel>) => {
     if (!travel?.value) return Promise.reject('Travel not found');
@@ -46,6 +47,7 @@ export const useTravelManage = (props: UseTravelManage) => {
   }
 
   return {
+    form,
     updateTravel,
     deleteTravel
   };
