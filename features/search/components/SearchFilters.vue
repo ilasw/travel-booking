@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type {SearchFiltersSchema} from "~/features/search/composables/use-search-travel";
-import InputText from "~/features/core/components/InputText.vue";
+import Input from "~/features/core/components/Input.vue";
 import InputNumber from "~/features/core/components/InputNumber.vue";
 
 const props = defineProps<{
@@ -19,7 +19,7 @@ const {filters} = toRefs(props);
              @input="$emit('form:change', $event)"
     >
       <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-2">
-        <InputText
+        <Input
             type="text"
             name="search"
             label="Travel name"

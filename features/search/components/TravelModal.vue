@@ -2,7 +2,7 @@
 import type {Travel} from "~/types/travel";
 import type {Maybe} from "~/types/utils";
 import {useTravelManage} from "~/features/search/composables/use-travel-manage";
-import InputText from "~/features/core/components/InputText.vue";
+import Input from "~/features/core/components/Input.vue";
 import InputNumber from "~/features/core/components/InputNumber.vue";
 import Modal from "~/features/core/components/Modal.vue";
 
@@ -34,7 +34,7 @@ const {updateTravel, deleteTravel} = useTravelManage({travel});
                @submit="updateTravel(travel)"
       >
         <div class="flex flex-col gap-4">
-          <InputText type="text"
+          <Input type="text"
                      v-model="travel.name"
                      name="name"
                      label="Name"/>
@@ -43,7 +43,7 @@ const {updateTravel, deleteTravel} = useTravelManage({travel});
                        label="Price"
                        step="100"
                        cast="number"/>
-          <InputText type="textarea"
+          <Input type="textarea"
                      v-model="travel.description"
                      name="description"
                      label="Description"/>

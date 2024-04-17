@@ -13,7 +13,7 @@ const emit = defineEmits({
 });
 
 const {name, image, price, rating} = reactive(props.travel);
-const {excerpt, dates: {start, end, duration}} = useTravelItem(props.travel);
+const {needExcerpt, excerpt, dates: {start, end, duration}} = useTravelItem(props.travel);
 const {state: showDetails, toggle: toggleDetails} = useToggle();
 
 </script>
@@ -70,6 +70,7 @@ const {state: showDetails, toggle: toggleDetails} = useToggle();
       >
         <p class="inline">{{ showDetails ? travel.description : excerpt }}</p>
         <button @click="toggleDetails"
+                v-if="needExcerpt"
                 class="relative z-10 underline hover:no-underline p-2 -m-2 -ml-1.5">
           {{ showDetails ? 'Show less' : 'Show more' }}
         </button>

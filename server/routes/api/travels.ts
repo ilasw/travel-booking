@@ -2,48 +2,50 @@ import {mockTravelItem} from "~/features/tests/mocks";
 import {H3Event} from "h3";
 
 
-let travels = getInitialTravels();
-
+const travels = getInitialTravels();
 
 export default defineEventHandler(async (event) => {
-  const travelId = getIdFromEvent(event);
+  const query = getQuery(event);
+  const travelId = Number(query?.travelId);
+
+  const getTravelIndex = (travelId: number) => travels.findIndex(travel => travel.id === travelId);
 
   if (event.method === 'POST') {
     const body = await readBody(event);
-    const travel = JSON.parse(body);
+    const maxId = Math.max(...travels.map(travel => travel.id));
+    const travel = {
+      ...body,
+      id: maxId + 1,
+      slug: body.name.toLowerCase().replace(/\s/g, '-'),
+    };
+
+    travels.push(travel);
     return travel;
   }
 
-  if(event.method === 'GET') {
-    if(travelId) {
+  if (event.method === 'GET') {
+    if (travelId) {
       return travels.find(travel => travel.id === travelId);
     }
 
     return travels;
   }
 
-  if(event.method === 'PUT') {
+  if (event.method === 'PUT') {
     const body = await readBody(event);
-    const index = travels.findIndex(travel => travel.id === travelId);
+    const index = getTravelIndex(travelId)
     travels[index] = body;
     return body;
   }
 
-  if(event.method === 'DELETE') {
-    const index = travels.findIndex(travel => travel.id === travelId);
+  if (event.method === 'DELETE') {
+    const index = getTravelIndex(travelId)
     travels.splice(index, 1);
-    return null;
+    return index;
   }
 
   return travels;
 });
-
-function getIdFromEvent(event: H3Event) {
-  const params = event.context.params?._;
-  if(!params || !params.startsWith('travels/')) return null;
-
-  return Number(params.split('/').at(-1));
-}
 
 function getInitialTravels() {
   const fakeTravelNames = [

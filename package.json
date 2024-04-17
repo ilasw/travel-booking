@@ -11,6 +11,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@formkit/addons": "^1.6.2",
     "@formkit/core": "^1.6.2",
     "@formkit/nuxt": "^1.6.2",
     "@formkit/vue": "^1.6.2",

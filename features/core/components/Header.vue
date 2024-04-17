@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
   <header class="sticky top-0 left-0 bg-white">
     <div class="container">
@@ -23,6 +19,11 @@
           <li>
             <NuxtLink to="/booking/" class="underline">
               Booking
+            </NuxtLink>
+          </li>
+          <li>
+            <NuxtLink to="/booking/my" class="underline">
+              Order history
             </NuxtLink>
           </li>
         </ul>

@@ -5,15 +5,14 @@ const props = defineProps<{
 }>();
 
 const {isOpen, toggle} = toRefs(props);
-const slots = defineSlots();
-console.log(slots);
+
 </script>
 
 <template>
-  <div :class="['backdrop', {open: !!isOpen}]"
+  <div :class="['backdrop', {open: isOpen}]"
        @click="toggle()"/>
   <div role="dialog"
-       :class="['modal', {open: !!isOpen}]">
+       :class="['modal', {open: isOpen}]">
     <header>
       <slot name="header">Modal</slot>
       <button autofocus
