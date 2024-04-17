@@ -16,7 +16,7 @@ a[class^="router-link"] {
   }
 
   .btn{
-    @apply px-4 text-white bg-red-700 rounded-md hover:bg-red-900;
-    line-height: 2.625;
+    @apply inline-block px-4 border border-red-700 rounded-md hover:bg-red-100;
+    line-height: 2;
   }
 }

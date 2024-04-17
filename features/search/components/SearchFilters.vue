@@ -7,26 +7,16 @@ const props = defineProps<{
   filters: SearchFiltersSchema,
 }>();
 
-const {filters} = props;
-const model = ref<SearchFiltersSchema>(filters);
-const formId = useId()
-
-const emit = defineEmits({
-  submit: (filters: SearchFiltersSchema) => {
-    console.log('filters');
-    return true;
-  },
-  reset: () => true,
-});
-
+const {filters} = toRefs(props);
 </script>
 
 <template>
   <div class="py-4">
     <FormKit type="form"
-             v-model="model"
-             :id="formId"
+             :value="filters"
+             :delay="100"
              :actions="false"
+             @input="$emit('form:change', $event)"
     >
       <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-2">
         <InputText
@@ -35,6 +25,7 @@ const emit = defineEmits({
             label="Travel name"
             placeholder="Search by travel name"
             autocomplete="off"
+            cast="string"
         />
         <InputNumber
             type="number"
@@ -43,7 +34,7 @@ const emit = defineEmits({
             placeholder="Price"
             autocomplete="off"
             min="0"
-            step="1"
+            step="100"
             cast="number"
         />
       </div>

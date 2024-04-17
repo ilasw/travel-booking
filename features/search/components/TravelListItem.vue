@@ -3,9 +3,14 @@ import type {Travel} from "~/types/travel";
 import {useTravelItem} from "~/features/search/composables/use-travel-item";
 import {useToggle} from "~/features/core/composables/use-toggle";
 
-const props = defineProps<{
+type TravelListItemProps = {
   travel: Travel
-}>();
+}
+
+const props = defineProps<TravelListItemProps>();
+const emit = defineEmits({
+  'manage': (travel: Travel) => true
+});
 
 const {name, image, price, rating} = reactive(props.travel);
 const {excerpt, dates: {start, end, duration}} = useTravelItem(props.travel);
@@ -70,20 +75,29 @@ const {state: showDetails, toggle: toggleDetails} = useToggle();
         </button>
       </div>
 
-      <!-- Price  -->
-      <div class="text-neutral-700"
-           itemprop="offers"
-           itemscope
-           itemtype="https://schema.org/Offer"
-      >
-        <meta itemprop="priceCurrency" content="EUR"/>
-        <span class="text-xs">from €</span>
-        <span v-localized-price="price"
-              data-testid="price"
-              itemprop="price"
-              class="font-medium text-lg"
-              :content="price"
-        >{{ price }}</span>
+      <div class="flex justify-between items-center">
+        <!-- Price  -->
+        <div class="text-neutral-700"
+             itemprop="offers"
+             itemscope
+             itemtype="https://schema.org/Offer"
+        >
+          <meta itemprop="priceCurrency" content="EUR"/>
+          <span class="text-xs">from €</span>
+          <span v-localized-price="price"
+                data-testid="price"
+                itemprop="price"
+                class="font-medium text-lg"
+                :content="price"
+          >{{ price }}</span>
+        </div>
+
+        <!-- Actions -->
+        <div>
+          <button @click="emit('manage', travel)"
+                  class="btn"
+          >Manage</button>
+        </div>
       </div>
     </div>
   </article>

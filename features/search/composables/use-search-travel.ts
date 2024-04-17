@@ -12,7 +12,7 @@ export const DEFAULT_FILTERS: SearchFiltersSchema = {
 
 export const useSearchTravel = async () => {
   const {data: travels} = await useFetch<Travel[]>('/api/travels')
-  const filters = ref<SearchFiltersSchema>(DEFAULT_FILTERS);
+  const filters = ref<SearchFiltersSchema>({...DEFAULT_FILTERS});
 
   const filteredTravels = computed(() => {
     if (!travels.value) return [];
@@ -21,15 +21,21 @@ export const useSearchTravel = async () => {
       const maxPrice = +filters.value.maxPrice;
       const isPriceInRange = !maxPrice || travel.price <= maxPrice;
 
-      const query = travel.name.toLowerCase();
+      const query = filters.value.search;
       const isNameMatch = !query || travel.name.toLowerCase().includes(query);
 
       return isPriceInRange && isNameMatch;
     });
   });
 
+  const onChange = (changes: Partial<SearchFiltersSchema>) => {
+    filters.value = {...filters.value, ...changes};
+  }
+
   return {
     filters,
     filteredTravels,
+    travels,
+    onChange
   }
 }

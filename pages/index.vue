@@ -4,7 +4,7 @@ import type {Travel} from "~/types/travel";
 import SearchFilters from "~/features/search/components/SearchFilters.vue";
 import {useSearchTravel} from "~/features/search/composables/use-search-travel";
 
-const {filteredTravels, filters} = await useSearchTravel();
+const {filteredTravels, filters, onChange} = await useSearchTravel();
 
 </script>
 
@@ -12,6 +12,7 @@ const {filteredTravels, filters} = await useSearchTravel();
   <div class="container">
     <SearchFilters
         :filters="filters"
+        @form:change="onChange"
     />
     <TravelList :travels="filteredTravels"/>
   </div>
