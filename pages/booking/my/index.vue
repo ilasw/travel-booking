@@ -4,7 +4,6 @@ import {useBooking} from "~/features/booking/composables/use-booking";
 
 const {myBookings} = await useBooking();
 
-console.log(myBookings);
 </script>
 
 <template>
